@@ -1,10 +1,23 @@
 const botaoMostrar = document.querySelectorAll("button");
-const informacoes = document.querySelectorAll("li");
+const perguntas = document.querySelectorAll("li");
 
 botaoMostrar.forEach(function (botao, i) {
-  botaoMostrar[i].addEventListener("click", () => mostrarTexto(i));
+  botaoMostrar[i].addEventListener("click", () => {
+    if (perguntas[i].classList.contains("mostrar")) {
+      esconderTexto(i);
+    } else {
+      perguntas.forEach((pergunta) => {
+        pergunta.classList.remove("mostrar");
+      });
+      mostrarTexto(i);
+    }
+  });
 });
 
 function mostrarTexto(i) {
-    informacoes[i].innerHTML += "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis egestas ex, a elementum est. Mauris auctor nunc quis erat.</p>"
+  perguntas[i].classList.add("mostrar");
+}
+
+function esconderTexto(i) {
+  perguntas[i].classList.remove("mostrar");
 }
